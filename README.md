@@ -1,8 +1,23 @@
 # UrbanTasker - Full-Stack Service Booking Platform
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Render-brightgreen?style=for-the-badge&logo=render)](https://urbantasker.onrender.com)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/akhileshchaubey51/urbantasker)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-brightgreen?style=for-the-badge&logo=springboot)](https://spring.io/projects/spring-boot)
+[![SQLite](https://img.shields.io/badge/Database-SQLite%203-blue?style=for-the-badge&logo=sqlite)](https://sqlite.org/)
+
+> **🌐 Live Hosted Website:** [https://urbantasker.onrender.com](https://urbantasker.onrender.com)  
 > **Tagline:** Find Trusted Professionals. Book Services. Live Better.
 
 UrbanTasker is a comprehensive, production-grade service-booking marketplace web platform developed for college PBL submission. It bridges the gap between verified local service professionals and homeowners seeking dependable on-demand services (electricians, plumbers, home cleaning, AC repair, carpentry, painting, appliance repair, and salon services).
+
+---
+
+### 🚀 Live Demo Quick Links
+- **Public Homepage & Services:** [https://urbantasker.onrender.com](https://urbantasker.onrender.com)
+- **Customer Dashboard:** [https://urbantasker.onrender.com/dashboard.html](https://urbantasker.onrender.com/dashboard.html) (`khushi@example.com` / `password123`)
+- **Provider Dashboard:** [https://urbantasker.onrender.com/provider-requests.html](https://urbantasker.onrender.com/provider-requests.html) (`divyansh@example.com` / `password123`)
+- **Admin Panel:** [https://urbantasker.onrender.com/admin.html](https://urbantasker.onrender.com/admin.html) (`admin@gmail.com` / `admin123`)
+- **Provider Verification Onboarding:** [https://urbantasker.onrender.com/provider.html](https://urbantasker.onrender.com/provider.html)
 
 ---
 
