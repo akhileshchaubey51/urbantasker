@@ -20,5 +20,5 @@ COPY --from=build /app/target/urbantasker-*.jar app.jar
 ENV PORT=8080
 EXPOSE 8080
 
-# Run Spring Boot application
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
+# Run Spring Boot application with dynamic PORT binding for Render/Cloud
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -Djava.security.egd=file:/dev/./urandom -jar app.jar"]
