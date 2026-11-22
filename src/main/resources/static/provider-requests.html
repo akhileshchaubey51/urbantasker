@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Requests Dashboard - UrbanTasker</title>
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/provider.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">
+        <div class="logo-icon"><i class="bi bi-tools"></i></div>
+        <span>UrbanTasker <small style="font-size:0.75rem; color:var(--secondary); font-weight:600;">Provider Panel</small></span>
+      </a>
+
+      <div class="nav-auth" id="navbarAuthSection"></div>
+    </div>
+  </nav>
+
+  <div class="dashboard-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div>
+        <div style="padding: 0 0.8rem 1.4rem 0.8rem; border-bottom: 1px solid var(--border-light); margin-bottom: 1.2rem;">
+          <small class="text-muted" style="text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Partner Center</small>
+          <h3 id="providerDisplayName" style="font-size: 1.15rem; margin-top: 0.2rem;">Service Partner</h3>
+          <div style="display:flex; gap:0.4rem; margin-top:0.4rem;">
+            <span class="badge badge-accepted" id="providerServiceBadge">Service</span>
+            <span class="badge" id="providerStatusBadge">Status</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li><a href="/provider-requests.html" class="sidebar-link active"><i class="bi bi-inbox-fill"></i> Incoming Requests</a></li>
+          <li><a href="/provider.html" class="sidebar-link"><i class="bi bi-file-earmark-arrow-up"></i> Verification Documents</a></li>
+        </ul>
+      </div>
+
+      <div style="padding: 1rem 0.5rem; border-top: 1px solid var(--border-light);">
+        <button onclick="UrbanTasker.auth.logout()" class="btn btn-outline btn-sm" style="width: 100%;">
+          <i class="bi bi-box-arrow-right"></i> Log Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Provider Requests Panel</h1>
+          <p>Review customer service requests, manage your schedule, and track completed earnings.</p>
+        </div>
+
+        <!-- Availability Toggle -->
+        <div class="card p-2" style="display: flex; align-items: center; gap: 0.8rem;">
+          <span style="font-size: 0.88rem; font-weight: 600;">Accepting Requests:</span>
+          <label class="switch">
+            <input type="checkbox" id="availabilitySwitch" onchange="ProviderModule.toggleAvailability()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- METRICS GRID -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--secondary-light); color: var(--secondary);">
+            <i class="bi bi-bell-fill"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalRequests">0</div>
+            <div class="stat-label">Total Requests</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fef3c7; color: #b45309;">
+            <i class="bi bi-hourglass-top"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statPendingRequests">0</div>
+            <div class="stat-label">Action Pending</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #e0e7ff; color: #4338ca;">
+            <i class="bi bi-calendar-event"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statAcceptedRequests">0</div>
+            <div class="stat-label">Accepted / Upcoming</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-light); color: var(--accent);">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalEarnings">₹0</div>
+            <div class="stat-label">Total Earnings</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INCOMING REQUESTS CARDS FEED -->
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1.25rem;">Live Booking Requests</h3>
+        <button onclick="ProviderModule.loadDashboard()" class="btn btn-outline btn-sm">
+          <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+      </div>
+
+      <div id="requestsContainer">
+        <div class="card p-5 text-center text-muted">
+          <span class="spinner-border"></span> Loading service requests...
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/provider.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ProviderModule.loadDashboard();
+    });
+  </script>
+</body>
+</html>

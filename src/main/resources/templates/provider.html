@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Verification & Document Onboarding - UrbanTasker</title>
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body style="background: var(--background);">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">
+        <div class="logo-icon"><i class="bi bi-tools"></i></div>
+        <span>UrbanTasker</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/provider-requests.html" class="nav-link">Provider Dashboard</a></li>
+      </ul>
+
+      <div class="nav-auth" id="navbarAuthSection"></div>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width: 820px; padding: 3rem 1.5rem 5rem 1.5rem;">
+    <div class="card" style="padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+      
+      <div style="text-align: center; margin-bottom: 2.2rem;">
+        <span class="badge badge-accepted" style="padding: 0.35rem 0.9rem; font-size: 0.82rem; margin-bottom: 0.8rem;">
+          <i class="bi bi-shield-lock-fill text-accent"></i> Official Partner Onboarding
+        </span>
+        <h1 style="font-size: 1.9rem; margin-bottom: 0.4rem;">Service Provider Verification Form</h1>
+        <p class="text-muted" style="max-width: 600px; margin: 0 auto; font-size: 0.92rem;">
+          Submit your professional credentials and government identity documents for admin verification. Once approved, your profile will be activated to receive customer bookings.
+        </p>
+      </div>
+
+      <form id="providerOnboardingForm" onsubmit="submitProviderForm(event)" enctype="multipart/form-data">
+        <!-- Section 1: Professional Details -->
+        <h4 style="font-size: 1.05rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+          1. Professional & Service Details
+        </h4>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+          <div class="form-group">
+            <label class="form-label" for="pvName">Full Business / Provider Name *</label>
+            <input type="text" id="pvName" name="providerName" class="form-control" placeholder="e.g. Divyansh Tech Services" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pvCategory">Service Category *</label>
+            <select id="pvCategory" name="serviceType" class="form-control" required>
+              <option value="Electrician Services">Electrician Services</option>
+              <option value="Plumbing & Pipe Repair">Plumbing & Pipe Repair</option>
+              <option value="Deep Home Cleaning">Deep Home Cleaning</option>
+              <option value="AC Repair & Gas Refill">AC Repair & Gas Refill</option>
+              <option value="Carpentry & Woodwork">Carpentry & Woodwork</option>
+              <option value="Interior Home Painting">Interior Home Painting</option>
+              <option value="Appliance Repair">Appliance Repair</option>
+              <option value="Salon & Spa at Home">Salon & Spa at Home</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+          <div class="form-group">
+            <label class="form-label" for="pvExp">Experience (Years) *</label>
+            <input type="number" id="pvExp" name="experienceYears" class="form-control" min="1" max="40" value="3" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pvRate">Hourly / Base Service Rate (₹) *</label>
+            <input type="number" id="pvRate" name="hourlyRate" class="form-control" min="100" step="10" value="399" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="pvDetails">Service Description & Expertise *</label>
+          <textarea id="pvDetails" name="serviceDetails" class="form-control" placeholder="Describe your specialization, tools used, previous projects, and reliability..." required></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem;">
+          <div class="form-group">
+            <label class="form-label" for="pvAddress">Business / Operating Address *</label>
+            <input type="text" id="pvAddress" name="address" class="form-control" placeholder="Shop/House No., Street, Area" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pvCity">City *</label>
+            <input type="text" id="pvCity" name="city" class="form-control" value="New Delhi" required>
+          </div>
+        </div>
+
+        <!-- Section 2: Verification Documents -->
+        <h4 style="font-size: 1.05rem; margin: 2rem 0 1.2rem 0; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+          2. Upload Verification Documents (Mandatory for Approval)
+        </h4>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+          <div class="form-group">
+            <label class="form-label">Profile Photograph</label>
+            <input type="file" name="photoFile" class="form-control" accept="image/*">
+            <div class="form-hint">JPG or PNG (max 5MB)</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Aadhaar / National ID Card *</label>
+            <input type="file" name="aadhaarFile" class="form-control" accept=".pdf,image/*">
+            <div class="form-hint">Clear scan of front & back</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+          <div class="form-group">
+            <label class="form-label">Police Verification Certificate *</label>
+            <input type="file" name="policeFile" class="form-control" accept=".pdf,image/*">
+            <div class="form-hint">Character / Clearance certificate</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Address Proof Document *</label>
+            <input type="file" name="addressProofFile" class="form-control" accept=".pdf,image/*">
+            <div class="form-hint">Electricity bill, rent agreement or voter ID</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.2rem;">
+          <button type="submit" id="submitOnboardingBtn" class="btn btn-secondary btn-lg" style="width: 100%;">
+            <i class="bi bi-cloud-arrow-up-fill"></i> Submit Verification Application
+          </button>
+          <div style="text-align: center; margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">
+            Your application will be securely sent to the administration team for auditing.
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (UrbanTasker.session.isLoggedIn()) {
+        document.getElementById('pvName').value = UrbanTasker.session.name || '';
+      }
+    });
+
+    async function submitProviderForm(e) {
+      e.preventDefault();
+
+      if (!UrbanTasker.session.isLoggedIn()) {
+        UrbanTasker.alert('Login Required', 'Please log in to your account first before submitting verification.', 'info')
+          .then(() => {
+            window.location.href = '/login.html';
+          });
+        return;
+      }
+
+      const form = document.getElementById('providerOnboardingForm');
+      const formData = new FormData(form);
+      const btn = document.getElementById('submitOnboardingBtn');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting Documents...';
+
+      try {
+        const response = await fetch('/api/admin/provider-verification', {
+          method: 'POST',
+          body: formData
+        });
+        const res = await response.json();
+
+        if (response.ok && res.success) {
+          // Update session to reflect provider role
+          UrbanTasker.session.role = 'provider';
+          UrbanTasker.session.providerId = res.data.id;
+          UrbanTasker.session.save({
+            userId: UrbanTasker.session.userId,
+            name: UrbanTasker.session.name,
+            role: 'provider',
+            providerId: res.data.id
+          });
+
+          UrbanTasker.alert(
+            'Application Submitted!',
+            'Your verification documents have been received. Status: PENDING admin approval. Once approved by the administrator, you will be able to accept customer bookings.',
+            'success'
+          ).then(() => {
+            window.location.href = '/provider-requests.html';
+          });
+        } else {
+          throw new Error(res.message || 'Submission failed');
+        }
+      } catch (err) {
+        UrbanTasker.toast(err.message || 'Error uploading documents', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill"></i> Submit Verification Application';
+      }
+    }
+  </script>
+</body>
+</html>

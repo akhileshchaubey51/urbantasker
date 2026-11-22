@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Verification Detail - UrbanTasker Admin</title>
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body style="background: var(--background);">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/admin.html" class="nav-logo">
+        <div class="logo-icon"><i class="bi bi-shield-check"></i></div>
+        <span>UrbanTasker <small style="font-size:0.75rem; color:var(--error); font-weight:600;">Document Auditor</small></span>
+      </a>
+
+      <div>
+        <a href="/admin.html" class="btn btn-outline btn-sm"><i class="bi bi-arrow-left"></i> Return to Admin Console</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width: 900px; padding: 3rem 1.5rem 5rem 1.5rem;">
+    <div class="card" style="padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-pending" id="detailStatusBadge">Pending Review</span>
+          <h1 id="detailProviderName" style="font-size: 1.8rem; margin: 0.4rem 0 0.2rem 0;">Loading Provider...</h1>
+          <div id="detailServiceType" style="color: var(--secondary); font-weight: 600; font-size: 1.05rem;">Service Category</div>
+        </div>
+        <div style="display: flex; gap: 0.6rem;">
+          <button id="rejectBtn" class="btn btn-outline btn-sm text-danger"><i class="bi bi-x-circle"></i> Reject Application</button>
+          <button id="approveBtn" class="btn btn-accent btn-sm"><i class="bi bi-check-circle"></i> Approve Provider</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <div>
+          <h4 style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.3rem;">Operating Location</h4>
+          <div id="detailAddress" style="font-weight: 500;">Address details...</div>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.3rem;">Experience & Pricing</h4>
+          <div id="detailExperienceRate" style="font-weight: 500;">3 Years Experience • ₹350/hr</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 2rem;">
+        <h4 style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.3rem;">Professional Description</h4>
+        <div id="detailDescription" style="background: #f8fafc; padding: 1.2rem; border-radius: var(--radius-sm); font-size: 0.92rem; line-height: 1.6;">
+          Description...
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.2rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+        Verified Document Uploads
+      </h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem;">
+        <div id="docAadhaarBox"></div>
+        <div id="docPoliceBox"></div>
+        <div id="docAddressBox"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id) {
+        window.location.href = '/admin.html';
+        return;
+      }
+
+      try {
+        const res = await UrbanTasker.api(`/api/admin/providers/${id}`);
+        if (res.success && res.data) {
+          const p = res.data;
+          document.getElementById('detailProviderName').textContent = p.providerName;
+          document.getElementById('detailServiceType').textContent = p.serviceType;
+          document.getElementById('detailAddress').textContent = `${p.address}, ${p.city}`;
+          document.getElementById('detailExperienceRate').textContent = `${p.experienceYears || 1} Years Experience • ₹${p.hourlyRate}/hr`;
+          document.getElementById('detailDescription').textContent = p.serviceDetails || 'No details provided.';
+
+          const badge = document.getElementById('detailStatusBadge');
+          badge.textContent = p.status;
+          badge.className = `badge ${p.status === 'Approved' ? 'badge-completed' : (p.status === 'Pending' ? 'badge-pending' : 'badge-rejected')}`;
+
+          const renderBox = (elemId, fileUrl, label) => {
+            const el = document.getElementById(elemId);
+            if (!el) return;
+            if (fileUrl) {
+              el.innerHTML = `
+                <div class="document-preview-box">
+                  <i class="bi bi-file-earmark-pdf-fill document-icon"></i>
+                  <div class="doc-name">${label}</div>
+                  <div class="doc-actions">
+                    <a href="${fileUrl}" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> View Doc</a>
+                  </div>
+                </div>
+              `;
+            } else {
+              el.innerHTML = `
+                <div class="document-preview-box">
+                  <i class="bi bi-file-earmark-x document-icon" style="color:var(--text-muted)"></i>
+                  <div class="doc-name">${label}</div>
+                  <div class="text-muted small mt-2">Not Uploaded</div>
+                </div>
+              `;
+            }
+          };
+
+          renderBox('docAadhaarBox', p.aadhaarFile, 'Government ID / Aadhaar');
+          renderBox('docPoliceBox', p.policeFile, 'Police Verification Clearance');
+          renderBox('docAddressBox', p.addressProofFile, 'Address Proof Document');
+
+          document.getElementById('approveBtn').onclick = () => AdminModule.approveProvider(p.id, p.providerName);
+          document.getElementById('rejectBtn').onclick = () => AdminModule.promptRejectProvider(p.id, p.providerName);
+        }
+      } catch (e) {
+        UrbanTasker.toast("Error loading provider details", "error");
+      }
+    });
+  </script>
+</body>
+</html>

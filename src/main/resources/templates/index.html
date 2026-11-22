@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanTasker - Find Trusted Professionals. Book Services. Live Better.</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/customer.css">
+  
+  <!-- Icons & SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-logo">
+        <div class="logo-icon"><i class="bi bi-tools"></i></div>
+        <span>UrbanTasker</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/index.html" class="nav-link active">Home</a></li>
+        <li><a href="/providers.html" class="nav-link">Find Services</a></li>
+        <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="/provider.html" class="nav-link text-secondary font-weight-bold">Register as Provider</a></li>
+      </ul>
+
+      <div class="nav-auth" id="navbarAuthSection">
+        <a href="/login.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="/register.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION WITH 3D EFFECT & GRADIENT -->
+  <header style="background: linear-gradient(180deg, #f3effc 0%, #f7f8fc 100%); padding: 5rem 1.5rem 4rem 1.5rem; text-align: center; position: relative; overflow: hidden;">
+    <!-- Decorative Floating 3D Service Elements -->
+    <div class="floating-elem" style="position: absolute; top: 12%; left: 8%; width: 56px; height: 56px; border-radius: 16px; background: rgba(255,255,255,0.85); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--secondary);">
+      <i class="bi bi-lightning-charge-fill"></i>
+    </div>
+    <div class="floating-elem" style="position: absolute; top: 25%; right: 9%; width: 64px; height: 64px; border-radius: 18px; background: rgba(255,255,255,0.85); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); animation-delay: -2s;">
+      <i class="bi bi-droplet-fill"></i>
+    </div>
+    <div class="floating-elem" style="position: absolute; bottom: 15%; left: 14%; width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.85); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--warning); animation-delay: -4s;">
+      <i class="bi bi-snow"></i>
+    </div>
+
+    <div class="container" style="max-width: 900px; position: relative; z-index: 2;">
+      <span class="badge badge-accepted" style="padding: 0.4rem 1rem; font-size: 0.85rem; margin-bottom: 1.2rem;">
+        <i class="bi bi-patch-check-fill text-accent"></i> Verified Urban Marketplace
+      </span>
+
+      <h1 style="font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1.2rem;">
+        Find Trusted Professionals Near You
+      </h1>
+
+      <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 2.5rem auto; line-height: 1.6;">
+        Book reliable home and personal services with confidence. Your trusted service marketplace is just one click away.
+      </p>
+
+      <!-- Hero Search Bar -->
+      <form action="/providers.html" method="GET" class="hero-search-box">
+        <div class="search-input-group">
+          <i class="bi bi-search"></i>
+          <input type="text" name="serviceType" placeholder="What service do you need? (e.g. Electrician, AC Repair)" required>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-input-group">
+          <i class="bi bi-geo-alt"></i>
+          <input type="text" name="city" placeholder="Your City or Pincode">
+        </div>
+        <button type="submit" class="btn btn-secondary btn-lg" style="border-radius: var(--radius-full);">
+          Search
+        </button>
+      </form>
+
+      <!-- Quick Trust Indicators -->
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: 0.88rem;">
+        <span><i class="bi bi-shield-check text-accent"></i> 100% Background Checked</span>
+        <span><i class="bi bi-currency-rupee text-accent"></i> Cash + Online Payment</span>
+        <span><i class="bi bi-star-fill text-warning"></i> 4.9/5 Service Rating</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- POPULAR CATEGORIES SECTION -->
+  <section class="container" style="padding: 4.5rem 1.5rem;">
+    <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem auto;">
+      <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Popular Service Categories</h2>
+      <p class="text-muted">Explore top-rated services delivered right to your doorstep by verified experts.</p>
+    </div>
+
+    <div class="categories-grid">
+      <a href="/providers.html?serviceType=Electrician" class="category-card">
+        <div class="category-icon"><i class="bi bi-lightning-charge"></i></div>
+        <div class="category-name">Electrician</div>
+      </a>
+      <a href="/providers.html?serviceType=Plumbing" class="category-card">
+        <div class="category-icon"><i class="bi bi-droplet"></i></div>
+        <div class="category-name">Plumber</div>
+      </a>
+      <a href="/providers.html?serviceType=Cleaning" class="category-card">
+        <div class="category-icon"><i class="bi bi-stars"></i></div>
+        <div class="category-name">Cleaning</div>
+      </a>
+      <a href="/providers.html?serviceType=AC" class="category-card">
+        <div class="category-icon"><i class="bi bi-snow"></i></div>
+        <div class="category-name">AC Repair</div>
+      </a>
+      <a href="/providers.html?serviceType=Carpentry" class="category-card">
+        <div class="category-icon"><i class="bi bi-hammer"></i></div>
+        <div class="category-name">Carpenter</div>
+      </a>
+      <a href="/providers.html?serviceType=Painting" class="category-card">
+        <div class="category-icon"><i class="bi bi-paint-bucket"></i></div>
+        <div class="category-name">Painting</div>
+      </a>
+      <a href="/providers.html?serviceType=Appliance" class="category-card">
+        <div class="category-icon"><i class="bi bi-gear-wide-connected"></i></div>
+        <div class="category-name">Appliances</div>
+      </a>
+      <a href="/providers.html?serviceType=Salon" class="category-card">
+        <div class="category-icon"><i class="bi bi-scissors"></i></div>
+        <div class="category-name">Salon at Home</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section id="how-it-works" style="background: #ffffff; padding: 5rem 1.5rem; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+    <div class="container">
+      <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">How UrbanTasker Works</h2>
+        <p class="text-muted">A seamless 4-step experience designed for maximum convenience and peace of mind.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem;">
+        <div class="card card-hover text-center p-4">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.2rem auto; font-weight: 700;">1</div>
+          <h4 style="margin-bottom: 0.6rem;">Select a Service</h4>
+          <p class="text-muted" style="font-size: 0.9rem;">Browse through certified services ranging from electrical repair to deep home sanitization.</p>
+        </div>
+
+        <div class="card card-hover text-center p-4">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.2rem auto; font-weight: 700;">2</div>
+          <h4 style="margin-bottom: 0.6rem;">Choose Your Expert</h4>
+          <p class="text-muted" style="font-size: 0.9rem;">Compare verified ratings, transparent pricing, past reviews, and provider experience.</p>
+        </div>
+
+        <div class="card card-hover text-center p-4">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.2rem auto; font-weight: 700;">3</div>
+          <h4 style="margin-bottom: 0.6rem;">Book Instantly</h4>
+          <p class="text-muted" style="font-size: 0.9rem;">Pick your preferred date, time slot and provide address instructions in 30 seconds.</p>
+        </div>
+
+        <div class="card card-hover text-center p-4">
+          <div style="width: 58px; height: 58px; border-radius: 50%; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.2rem auto; font-weight: 700;">4</div>
+          <h4 style="margin-bottom: 0.6rem;">Pay Cash or Online</h4>
+          <p class="text-muted" style="font-size: 0.9rem;">Enjoy flexible payment options: Cash on delivery after service or secure online payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why-us" class="container" style="padding: 5rem 1.5rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+      <div>
+        <span class="badge badge-completed" style="margin-bottom: 1rem;">Why UrbanTasker</span>
+        <h2 style="font-size: 2.3rem; margin-bottom: 1.2rem;">Built for Quality, Reliability & Safety</h2>
+        <p class="text-muted" style="margin-bottom: 2rem; font-size: 1.05rem;">
+          We eliminate the friction and uncertainty of finding reliable home professionals. Every technician is rigorously vetted before receiving bookings.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.4rem;">
+          <div style="display: flex; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;"><i class="bi bi-shield-lock-fill"></i></div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Government ID & Police Verified</h4>
+              <p class="text-muted" style="font-size: 0.9rem;">Every service partner must pass Aadhaar verification and document auditing by our administration team.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;"><i class="bi bi-tag-fill"></i></div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Fixed & Transparent Pricing</h4>
+              <p class="text-muted" style="font-size: 0.9rem;">No hidden charges or unexpected surprises. See upfront rate estimates before booking.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;"><i class="bi bi-award-fill"></i></div>
+            <div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Service Satisfaction Assurance</h4>
+              <p class="text-muted" style="font-size: 0.9rem;">Dedicated support and resolution team to ensure you receive flawless service every single time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Box -->
+      <div style="background: linear-gradient(135deg, var(--primary), #1f2937); border-radius: var(--radius-lg); padding: 3rem; color: #fff; box-shadow: var(--shadow-lg);">
+        <h3 style="color: #fff; font-size: 1.7rem; margin-bottom: 2rem;">Platform Impact Numbers</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div>
+            <div style="font-size: 2.6rem; font-weight: 800; color: var(--accent); font-family: 'Poppins', sans-serif;">50,000+</div>
+            <div style="color: #94a3b8; font-size: 0.9rem;">Services Delivered</div>
+          </div>
+          <div>
+            <div style="font-size: 2.6rem; font-weight: 800; color: #f59e0b; font-family: 'Poppins', sans-serif;">4.9 ★</div>
+            <div style="color: #94a3b8; font-size: 0.9rem;">Average Rating</div>
+          </div>
+          <div>
+            <div style="font-size: 2.6rem; font-weight: 800; color: #a855f7; font-family: 'Poppins', sans-serif;">1,200+</div>
+            <div style="color: #94a3b8; font-size: 0.9rem;">Verified Providers</div>
+          </div>
+          <div>
+            <div style="font-size: 2.6rem; font-weight: 800; color: #38bdf8; font-family: 'Poppins', sans-serif;">99.4%</div>
+            <div style="color: #94a3b8; font-size: 0.9rem;">Customer Retention</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BECOME A PROVIDER BANNER -->
+  <section class="container" style="padding: 2rem 1.5rem 5rem 1.5rem;">
+    <div style="background: linear-gradient(135deg, var(--secondary), #8b5cf6); border-radius: var(--radius-lg); padding: 3.5rem 2.5rem; color: #fff; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; box-shadow: var(--shadow-glow);">
+      <div style="max-width: 600px;">
+        <span class="badge" style="background: rgba(255,255,255,0.25); color: #fff; margin-bottom: 0.8rem;">Join Our Network</span>
+        <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 0.8rem;">Are You a Skilled Professional?</h2>
+        <p style="color: #e9d5ff; font-size: 1.05rem;">
+          Grow your business with UrbanTasker. Get access to thousands of direct customer booking requests in your city.
+        </p>
+      </div>
+      <div>
+        <a href="/provider.html" class="btn btn-primary btn-lg" style="background: #ffffff; color: var(--primary); font-weight: 700;">
+          Apply as a Provider <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="color: #fff;">
+            <div class="logo-icon"><i class="bi bi-tools"></i></div>
+            <span>UrbanTasker</span>
+          </div>
+          <p>Find Trusted Professionals. Book Services. Live Better. Connecting verified local service partners with customers.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Links</h4>
+          <ul class="footer-links">
+            <li><a href="/providers.html">Explore All Services</a></li>
+            <li><a href="/dashboard.html">Customer Dashboard</a></li>
+            <li><a href="/login.html">Login to Account</a></li>
+            <li><a href="/register.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Partners & Admin</h4>
+          <ul class="footer-links">
+            <li><a href="/provider.html">Register as Provider</a></li>
+            <li><a href="/provider-requests.html">Provider Panel</a></li>
+            <li><a href="/admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>PBL Project Info</h4>
+          <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6;">
+            Full-Stack College PBL Project • Built with Spring Boot, MySQL, Java, HTML5, CSS3, & Vanilla JS.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 UrbanTasker Platform. All rights reserved.</div>
+        <div>Designed with precision for college PBL submission.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
